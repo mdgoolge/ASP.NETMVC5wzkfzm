@@ -8,7 +8,7 @@ namespace Chapter02.Models
     public class CustomerDataOperation:IDataOperation<Customer>
     {
         private string _path = Environment.CurrentDirectory;
-        private string _connectionstring=@""
+        private string _connectionstring = @"";
         public IEnumerable<Customer> Get()
         {
             throw new NotImplementedException();
