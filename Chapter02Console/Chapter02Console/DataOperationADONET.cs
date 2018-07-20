@@ -74,23 +74,20 @@ namespace Chapter02Console
             DataTable dt = new DataTable();
             ad.Fill(dt);
 
-            IEnumerable<DataRow> query =
-                from order in dt.AsEnumerable()
-                where order.Field<int>("CategoryID")==2
-                select order;
+            var query =
+                   from product in dt.AsEnumerable()
+                   where product.Field<int>("CategoryID") == 2
+                   select new
+               {
+                   ProductName = product.Field<string>("ProductName"),
+                   QuantityPerUnit = product.Field<string>("QuantityPerUnit"),
+                   Price = product.Field<decimal>("UnitPrice")
+               };
 
-            DataTable boundTable = query.CopyToDataTable<DataRow>();
 
-            foreach (DataRow row in boundTable.Rows)
+            foreach (var item in query)
             {
-                string str = "";
-                foreach (DataColumn col in boundTable.Columns)
-                {
-                    str += row[col.ColumnName].ToString();
-                    str += ",";
-                }
-
-                Console.WriteLine(str);
+                Console.WriteLine("Name:{0},QuantityPerUnit:{0},Price:{0}", item.ProductName, item.QuantityPerUnit, item.Price);
             }
 
         }
