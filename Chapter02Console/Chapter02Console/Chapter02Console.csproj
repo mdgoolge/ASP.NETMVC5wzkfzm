@@ -57,9 +57,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Customer.cs" />
+    <Compile Include="DataOperationADONET.cs" />
     <Compile Include="Northwind.cs" />
-    <Compile Include="OrderDataOperation.cs" />
-    <Compile Include="CustomerDataOperation.cs" />
+    <Compile Include="DataOperationOrder.cs" />
+    <Compile Include="DataOperationCustomer.cs" />
     <Compile Include="IDataOperation.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="Program.cs" />

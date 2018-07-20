@@ -17,7 +17,7 @@ namespace Chapter02Console
             {
                 if (customerOp == null)
                 {
-                    customerOp = new CustomerDataOperation();
+                    customerOp = new DataOperationCustomer();
                 }
                 return customerOp;
             }
@@ -28,7 +28,7 @@ namespace Chapter02Console
             {
                 if (orderOp == null)
                 {
-                    orderOp = new OrderDataOperation();
+                    orderOp = new DataOperationOrder();
                 }
                 return orderOp;
             }

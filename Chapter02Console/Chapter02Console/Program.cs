@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -10,6 +12,12 @@ namespace Chapter02Console
     class Program
     {
         static void Main(string[] args)
+        {
+            NewMethod();
+
+        }
+
+        private static void NewMethod()
         {
             //Northwind db = new Northwind();
             //IEnumerable<Customer> customers = db.Customers.Get();
@@ -190,7 +198,7 @@ namespace Chapter02Console
             Console.WriteLine(lambdaExpr.ToString());
             // (Array, Index, Value) => (Array[Index] = (Array[Index] + Value))
 
-            int[] array=new int[] { 10, 20, 30 };
+            int[] array = new int[] { 10, 20, 30 };
             Console.WriteLine(lambdaExpr.Compile().Invoke(array, 0, 5));
             // 15
 
