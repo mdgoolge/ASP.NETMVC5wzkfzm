@@ -13,8 +13,10 @@ namespace Chapter02Console
     {
         static void Main(string[] args)
         {
-            NewMethod();
+            ////NewMethod();
 
+            //DataOperationADONET.test1();
+            DataOperationADONET.test2();
         }
 
         private static void NewMethod()
