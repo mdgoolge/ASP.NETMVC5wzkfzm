@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="Blog.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
+        <EntityContainer Name="BlogTargetContainer" >
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Blog" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="BlogContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BlogSet" EntityType="Blog.Blog" />
+          <EntitySet Name="BlogArticleSet" EntityType="Blog.BlogArticle" />
+          <AssociationSet Name="BlogBlogArticle" Association="Blog.BlogBlogArticle">
+            <End Role="Blog" EntitySet="BlogSet" />
+            <End Role="BlogArticle" EntitySet="BlogArticleSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Blog">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OwnerID" Type="Guid" Nullable="false" />
+          <Property Name="Caption" Type="String" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="BlogArticle" Relationship="Blog.BlogBlogArticle" FromRole="Blog" ToRole="BlogArticle" />
+        </EntityType>
+        <EntityType Name="BlogArticle">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BlogID" Type="Guid" Nullable="false" />
+          <Property Name="Subject" Type="String" Nullable="false" />
+          <Property Name="Body" Type="String" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Blog" Relationship="Blog.BlogBlogArticle" FromRole="BlogArticle" ToRole="Blog" />
+        </EntityType>
+        <Association Name="BlogBlogArticle">
+          <End Type="Blog.Blog" Role="Blog" Multiplicity="1" />
+          <End Type="Blog.BlogArticle" Role="BlogArticle" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="Blog" />
+        <Alias Key="Target" Value="Blog.Store" />
+        <EntityContainerMapping CdmEntityContainer="BlogContainer" StorageEntityContainer="BlogTargetContainer">
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
