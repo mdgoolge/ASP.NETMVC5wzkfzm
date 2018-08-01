@@ -10,6 +10,11 @@ namespace CodeFirst
     {
         static void Main(string[] args)
         {
+
+            using (BlogDbModel model=new BlogDbModel())
+            {
+                model.Database.CreateIfNotExists();
+            }
         }
     }
 }
