@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ca_20180913_Threading_ManualResetEvent
+namespace ca_20180913_Threading_ManualResetEvent1
 {
     class Program
     {
@@ -14,12 +14,13 @@ namespace ca_20180913_Threading_ManualResetEvent
         static void Main(string[] args)
         {
             Thread t = new Thread(Run);
-            //启动辅助线程
+            Console.WriteLine("开始" + DateTime.Now.ToString("mm:ss"));
             t.Start();
-            //等待辅助线程执行完毕之后，主线程才继续执行
-            Console.WriteLine("主线程一边做自己的事，一边等辅助线程执行!" + DateTime.Now.ToString("mm:ss"));
             mr.WaitOne();
-            Console.WriteLine("收到信号，主线程继续执行" + DateTime.Now.ToString("mm:ss"));
+            Console.WriteLine("第一次等待完成!" + DateTime.Now.ToString("mm:ss"));
+            mr.Reset();     //重置后，又能WaitOne()啦,  如果不使用Reset，则直接输出第二次等待完成，而不会等待2秒。
+            mr.WaitOne(3000);
+            Console.WriteLine("第二次等待完成!" + DateTime.Now.ToString("mm:ss"));
             Console.ReadKey();
         }
         static void Run()
